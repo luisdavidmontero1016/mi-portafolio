@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Portafolio profesional de desarrollador Full Stack.">
+
+    <meta name="theme-color" content="#0b0f19">
+
+    <title>Luis David Montero | Full Stack Developer</title>
+
+    <!-- =====================================================
+         TAILWIND CSS
+    ====================================================== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: "#0b0f19",
+                            800: "#101625",
+                            700: "#151c2e"
+                        },
+                        neon: {
+                            blue: "#3b82f6",
+                            purple: "#8b5cf6",
+                            cyan: "#06b6d4"
+                        }
+                    },
+
+                    fontFamily: {
+                        sans: [
+                            "Inter",
+                            "ui-sans-serif",
+                            "system-ui",
+                            "sans-serif"
+                        ]
+                    }
+                }
+            }
+        };
+    </script>
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- =====================================================
+         GSAP
+    ====================================================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/ScrollTrigger.min.js"></script>
+
+    <!-- =====================================================
+         LUCIDE ICONS
+    ====================================================== -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- =====================================================
+         CUSTOM CSS
+    ====================================================== -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SCROLL PROGRESS
+    ====================================================== -->
+
+    <div id="scrollProgress"></div>
+
+    <!-- =====================================================
+         GRAIN TEXTURE
+    ====================================================== -->
+
+    <div class="grain-overlay"></div>
+
+    <!-- =====================================================
+         CURSOR SPOTLIGHT
+    ====================================================== -->
+
+    <div id="cursorGlow"></div>
+
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
+
+    <div class="background-grid"></div>
+
+    <div class="gradient-orb orb-one"></div>
+    <div class="gradient-orb orb-two"></div>
+
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
+
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50">
+
+        <nav class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="nav-container flex items-center justify-between h-20">
+
+                <!-- LOGO -->
+
+                <a href="#inicio" class="logo">
+                    <span class="logo-bracket">&lt;</span>
+                    <span>LD</span>
+                    <span class="logo-bracket">/&gt;</span>
+                </a>
+
+                <!-- DESKTOP MENU -->
+
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#inicio" class="nav-link" data-i18n="nav.home">
+                        Inicio
+                    </a>
+
+                    <a href="#sobre-mi" class="nav-link" data-i18n="nav.about">
+                        Sobre mí
+                    </a>
+
+                    <a href="#habilidades" class="nav-link" data-i18n="nav.skills">
+                        Habilidades
+                    </a>
+
+                    <a href="#proyectos" class="nav-link" data-i18n="nav.projects">
+                        Proyectos
+                    </a>
+
+                    <a href="#formacion" class="nav-link" data-i18n="nav.education">
+                        Formación
+                    </a>
+
+                    <a href="#contacto" class="nav-link" data-i18n="nav.contact">
+                        Contacto
+                    </a>
+                </div>
+
+                <!-- CONTACT BUTTON -->
+
+                <!-- Dentro del navegador de escritorio (en <header>), justo antes o después del botón "Hablemos" -->
+                <div class="hidden md:flex items-center gap-4">
+                    <!-- BOTÓN DE IDIOMA -->
+                    <button id="langToggle" class="outline-button small flex items-center gap-2"
+                        aria-label="Cambiar idioma">
+                        <i data-lucide="globe" style="width: 16px;"></i>
+                        <span id="langText">EN</span>
+                    </button>
+
+                    <a href="#contacto" class="neon-button small">
+                        <span data-i18n="nav.talk">Hablemos</span>
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                </div>
+
+                <!-- MOBILE BUTTON -->
+
+                <button id="mobileMenuButton" class="md:hidden menu-button" aria-label="Abrir menú">
+                    <i data-lucide="menu"></i>
+                </button>
+
+            </div>
+
+            <!-- MOBILE MENU -->
+
+            <div id="mobileMenu" class="mobile-menu md:hidden">
+
+                <a href="#inicio">Inicio</a>
+                <a href="#sobre-mi">Sobre mí</a>
+                <a href="#habilidades">Habilidades</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#formacion">Formación</a>
+                <a href="#contacto">Contacto</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section id="inicio" class="hero-section">
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+                <div class="grid lg:grid-cols-2 gap-16 items-center min-h-screen pt-14">
+
+                    <!-- HERO CONTENT -->
+
+                    <div class="hero-content">
+
+                        <p class="hero-small-text" data-i18n="hero.small">
+                            HOLA, SOY
+                        </p>
+
+                        <h1 class="hero-title">
+                            Luis David
+                            <span>
+                                Montero
+                            </span>
+                        </h1>
+
+                        <h2 class="hero-role">
+                            .
+                            Full Stack
+                            <span>Developer</span>
+                        </h2>
+
+                        <p class="hero-description" data-i18n="hero.description">
+                            Construyo experiencias digitales modernas, escalables y centradas en el usuario, combinando
+                            diseño, tecnología y creatividad.
+                        </p>
+
+                        <!-- CTA -->
+
+                        <div class="flex flex-wrap gap-4 mt-4">
+                            <a href="assets/CV_Luis_Montero.pdf" download class="neon-button">
+                                <span data-i18n="hero.cv">Descargar CV</span>
+                                <i data-lucide="download"></i>
+                            </a>
+
+                            <a href="#contacto" class="outline-button">
+                                <span data-i18n="hero.contactBtn">Contactarme</span>
+                                <i data-lucide="arrow-down-right"></i>
+                            </a>
+                        </div>
+
+                        <!-- MÉTRICAS RÁPIDAS -->
+
+                        <div class="hero-metrics">
+                            <div class="hero-metric">
+                                <strong>100%</strong>
+                                <span data-i18n="hero.metric1">CONSTANCIA</span>
+                            </div>
+                            <div class="hero-metric">
+                                <strong>24/7</strong>
+                                <span data-i18n="hero.metric2">APRENDIENDO</span>
+                            </div>
+                            <div class="hero-metric">
+                                <strong>1st</strong>
+                                <span data-i18n="hero.metric3">ACTITUD</span>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <!-- HERO PHOTO -->
+
+                    <div class="hero-photo-wrapper">
+
+                        <!-- =================================================
+                             CARNET COLGANTE (LANYARD BADGE)
+                             ================================================== -->
+
+                        <div class="badge-swing" id="photoFrame">
+
+                            <!-- CORDÓN -->
+                            <div class="lanyard-strap">
+                                <span class="strap-text">LUIS DAVID MONTERO &bull; FULL STACK DEVELOPER &bull; LUIS
+                                    DAVID MONTERO &bull; FULL STACK DEVELOPER &bull; LUIS DAVID MONTERO &bull; FULL
+                                    STACK DEVELOPER</span>
+                            </div>
+
+                            <!-- CLIP METÁLICO -->
+                            <div class="badge-clip"></div>
+
+                            <!-- TARJETA -->
+                            <div class="id-card" id="idCard">
+
+                                <div class="id-glare"></div>
+                                <div class="id-holo"></div>
+
+                                <div class="id-slot"></div>
+
+                                <div class="id-header">
+                                    <div class="id-brand">
+                                        <span class="logo-bracket">&lt;</span>LD<span class="logo-bracket">/&gt;</span>
+                                    </div>
+                                    <span class="id-pass">DEV PASS &middot; 2026</span>
+                                </div>
+
+                                <div class="id-photo">
+                                    <img id="profileImage" src="assets/ioo.jpeg" draggable="false"
+                                        alt="Fotografía de Luis David Montero">
+                                </div>
+
+                                <div class="id-identity">
+                                    <h3 class="id-name">Luis<br>Montero</h3>
+                                    <p class="id-role" data-i18n="badge.degree">Ingeniero de Sistemas</p>
+                                </div>
+
+                                <div class="id-meta">
+                                    <div>
+                                        <span>ID</span>
+                                        <strong>LDMS-2026</strong>
+                                    </div>
+                                    <div>
+                                        <span>BASE</span>
+                                        <strong>Tunja, CO</strong>
+                                    </div>
+                                    <div class="id-meta-wide">
+                                        <span>ROL</span>
+                                        <strong>Full Stack</strong>
+                                    </div>
+                                </div>
+
+                                <div class="id-barcode" id="idBarcode"></div>
+
+                            </div>
+
+                        </div>
+
+                        <!-- HINT -->
+
+                        <div class="badge-hint">
+
+
+                            <div class="hero-socials">
+                                <a href="https://github.com/luisdavidmontero1016" target="_blank" aria-label="GitHub">
+                                    <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"
+                                        class="brand-icon">
+                                </a>
+
+                                <a href="https://www.linkedin.com/in/ing-luismontero" target="_blank"
+                                    aria-label="LinkedIn">
+                                    <img src="assets/linkedin.png" alt="LinkedIn" class="brand-icon">
+                                </a>
+
+                                <a href="mailto:luisdavidmontero10.8@gmail.com" aria-label="Correo">
+                                    <img src="assets/gmail.png">
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- FLOATING CARD -->
+
+                        <div class="floating-card card-tech">
+                            <div class="floating-icon">
+                                <i data-lucide="code-2"></i>
+                            </div>
+                            <div>
+                                <span data-i18n="hero.floating1.label">Actualmente</span>
+                                <strong data-i18n="hero.floating1.value">Creando soluciones</strong>
+                            </div>
+                        </div>
+
+                        <div class="floating-card card-experience">
+                            <span class="experience-number">
+                                01
+                            </span>
+                            <div>
+                                <span data-i18n="hero.floating2.label">Enfoque</span>
+                                <strong data-i18n="hero.floating2.value">Innovación</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SCROLL INDICATOR -->
+
+            <div class="scroll-indicator">
+
+                <span>SCROLL</span>
+
+                <div class="scroll-line"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SOBRE MI
+        ================================================== -->
+
+        <section id="sobre-mi" class="section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+                <div class="section-header">
+                    <span class="section-number">
+                        01
+                    </span>
+                    <div>
+                        <p class="section-eyebrow" data-i18n="about.eyebrow">
+                            CONÓCEME
+                        </p>
+                        <h2 class="section-title">
+                            <span data-i18n="about.title">Sobre</span> <span data-i18n="about.titleSpan">mí</span>
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+                    <div class="about-text reveal">
+                        <p class="large-text" data-i18n="about.p1">
+                            Ingeniero de Sistemas y Junior Full Stack Developer especializado en crear software
+                            eficiente, estructurado y listo para resolver problemas del mundo real a través de la
+                            tecnología.
+                        </p>
+
+                        <p data-i18n="about.p2">
+                            Mi enfoque combina el desarrollo web moderno, la gestión eficiente de bases de datos y la
+                            ingeniería de software con una sólida base analítica. Me interesa especialmente construir
+                            soluciones limpias, escalables y con un impacto real, integrando tanto la lógica de backend
+                            como la creatividad en el desarrollo de experiencias interactivas.
+                        </p>
+
+                        <p data-i18n="about.p3">
+                            Mi objetivo es seguir creciendo como profesional mientras participo en proyectos donde la
+                            tecnología pueda generar un impacto real.
+                        </p>
+                    </div>
+
+                    <!-- ABOUT STATS -->
+                    <div class="stats-grid reveal">
+                        <div class="code-window stat-wide" aria-hidden="true">
+                            <div class="code-bar"><i></i><i></i><i></i><span>luis.ts</span></div>
+                            <pre><code id="codeTyped"></code><b class="caret"></b></pre>
+                        </div>
+
+
+
+                        <div class="stat-card">
+                            <div class="stat-icon"><i data-lucide="layout-panel-left"></i></div>
+                            <h3 data-i18n="about.stat1.title">Desarrollo</h3>
+                            <p data-i18n="about.stat1.desc">Interfaces modernas y aplicaciones web responsivas.</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon"><i data-lucide="git-branch"></i></div>
+                            <h3 data-i18n="about.stat2.title">Arquitectura</h3>
+                            <p data-i18n="about.stat2.desc">Código organizado, escalable y mantenible.</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon"><i data-lucide="palette"></i></div>
+                            <h3 data-i18n="about.stat3.title">UX/UI</h3>
+                            <p data-i18n="about.stat3.desc">Experiencias digitales intuitivas y atractivas.</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-icon"><i data-lucide="brain-circuit"></i></div>
+                            <h3 data-i18n="about.stat4.title">Aprendizaje</h3>
+                            <p data-i18n="about.stat4.desc">Curiosidad constante por nuevas tecnologías.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- =================================================
+             HABILIDADES
+         ================================================== -->
+
+        <section id="habilidades" class="section skills-section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="section-header">
+                    <span class="section-number">
+                        02
+                    </span>
+                    <div>
+                        <p class="section-eyebrow" data-i18n="skills.eyebrow">
+                            MI STACK
+                        </p>
+                        <h2 class="section-title">
+                            <span data-i18n="skills.title">Habilidades</span> <span
+                                data-i18n="skills.titleSpan">técnicas</span>
+                        </h2>
+                    </div>
+                </div>
+
+
+                <div class="skills-wrapper">
+
+
+                    <!-- FRONTEND -->
+
+                    <div class="skill-category reveal">
+
+                        <div class="category-title">
+
+                            <div class="category-icon">
+                                <i data-lucide="monitor"></i>
+                            </div>
+
+                            <div>
+                                <span>01</span>
+                                <h3>Frontend</h3>
+                            </div>
+
+                        </div>
+
+
+                        <div class="tech-grid">
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/html5" alt="HTML5">
+
+                                <span>HTML5</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="assets/css3.png" alt="CSS3">
+
+                                <span>CSS3</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/javascript" alt="JavaScript">
+
+                                <span>JavaScript</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/typescript" alt="TypeScript">
+
+                                <span>TypeScript</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/react" alt="React">
+
+                                <span>React</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/nextdotjs" alt="Next.js">
+
+                                <span>Next.js</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/angular/DD0031" alt="Angular" class="brand-icon">
+
+                                <span>Angular</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- BACKEND -->
+
+                    <div class="skill-category reveal">
+
+                        <div class="category-title">
+
+                            <div class="category-icon">
+                                <i data-lucide="server"></i>
+                            </div>
+
+                            <div>
+                                <span>02</span>
+                                <h3>Backend</h3>
+                            </div>
+
+                        </div>
+
+
+                        <div class="tech-grid">
+
+                            <div class="tech-card">
+
+                                <img src="assets/java.png" alt="Java">
+
+                                <span>Java</span>
+
+                            </div>
+
+                            <div class="tech-card">
+
+                                <img src="https://img.icons8.com/color/512/python--v2.png" alt="Python">
+
+                                <span>Python</span>
+
+                            </div>
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn-icons-png.magnific.com/512/6132/6132221.png" alt="C#">
+
+                                <span>C#</span>
+
+                            </div>
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.freebiesupply.com/logos/large/2x/php-1-logo-png-transparent.png"
+                                    alt="PHP">
+
+                                <span>PHP</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://www.corals.io/wp-content/uploads/2024/11/laravel-icon-995x1024-dk77ahh4.png"
+                                    alt="Laravel">
+
+                                <span>Laravel</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/nodedotjs" alt="Node.js">
+
+                                <span>Node.js</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.worldvectorlogo.com/logos/fastapi.svg" alt="Express">
+
+                                <span>FastAPI</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DATABASES -->
+
+                    <div class="skill-category reveal">
+
+                        <div class="category-title">
+                            <div class="category-icon">
+                                <i data-lucide="database"></i>
+                            </div>
+                            <div>
+                                <span>03</span>
+                                <h3 data-i18n="skills.cat.databases">Bases de datos</h3>
+                            </div>
+                        </div>
+
+
+                        <div class="tech-grid">
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/postgresql" alt="PostgreSQL">
+
+                                <span>PostgreSQL</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/mysql" alt="MySQL">
+
+                                <span>MySQL</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/mongodb" alt="MongoDB">
+
+                                <span>MongoDB</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TOOLS -->
+
+                    <div class="skill-category reveal">
+
+                        <div class="category-title">
+                            <div class="category-icon">
+                                <i data-lucide="wrench"></i>
+                            </div>
+                            <div>
+                                <span>04</span>
+                                <h3 data-i18n="skills.cat.tools">Herramientas</h3>
+                            </div>
+                        </div>
+
+
+                        <div class="tech-grid">
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/git" alt="Git">
+
+                                <span>Git</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="brand-icon">
+
+                                <span>GitHub</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/docker" alt="Docker">
+
+                                <span>Docker</span>
+
+                            </div>
+
+
+                            <div class="tech-card">
+
+                                <img src="https://cdn.simpleicons.org/vercel" alt="Vercel">
+
+                                <span>Vercel</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROYECTOS
+        ================================================== -->
+
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track" id="marqueeTrack"></div>
+        </div>
+
+        <section id="proyectos" class="section">
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+                <div class="section-header">
+                    <span class="section-number">
+                        03
+                    </span>
+                    <div>
+                        <p class="section-eyebrow" data-i18n="projects.eyebrow">
+                            TRABAJO DESTACADO
+                        </p>
+                        <h2 class="section-title">
+                            <span data-i18n="projects.title">Mis</span> <span
+                                data-i18n="projects.titleSpan">proyectos</span>
+                        </h2>
+                    </div>
+                </div>
+
+
+                <div class="projects-grid">
+
+
+                    <!-- PROJECT 1: WORLD OF WORDS -->
+                    <article class="project-card tilt-card">
+                        <div class="project-image">
+                            <div class="project-gradient gradient-blue"></div>
+
+                            <!-- IMAGEN PREVIEW DEL PROYECTO -->
+                            <img src="assets/logoWorldofWords.png" alt="World of Words Video Game"
+                                class="project-preview-img">
+
+                            <div class="project-number">
+                                01
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-top">
+                                <span class="project-type" data-i18n="project1.type">
+                                    EDUCATIONAL 2D GAME
+                                </span>
+                                <i data-lucide="arrow-up-right"></i>
+                            </div>
+
+                            <h3 data-i18n="project1.title">
+                                World of Words
+                            </h3>
+
+                            <p data-i18n="project1.desc">
+                                Videojuego educacional de plataformas en 2D diseñado para diagnosticar y fortalecer
+                                patrones de lectura y escritura mediante mecánicas interactivas.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>
+                                    <img src="https://cdn.simpleicons.org/unity/000000" alt="Unity">
+                                    Unity
+                                </span>
+                                <span>
+                                    <img src="https://cdn.worldvectorlogo.com/logos/c--4.svg" alt="C#">
+                                    C#
+                                </span>
+                                <span>
+                                    <img src="https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt="Git#">
+                                    Git
+                                </span>
+                                <span>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub">
+                                    GitHub
+                                </span>
+
+                            </div>
+
+                            <div class="project-buttons">
+                                <a href="https://github.com/luisdavidmontero1016" target="_blank" class="project-link">
+                                    <img src="https://www.pngkey.com/png/full/178-1787508_github-icon-download-at-icons8-white-github-icon.png"
+                                        alt="GitHub" style="width: 16px; height: 16px; object-fit: contain;">
+                                    <span data-i18n="project.code">Ver código</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- PROJECT 2 -->
+                    <article class="project-card tilt-card">
+                        <div class="project-image">
+                            <div class="project-gradient gradient-blue"></div>
+
+                            <!-- IMAGEN PREVIEW DEL PROYECTO -->
+                            <img src="assets/luistech.png" alt="World of Words Video Game" class="project-preview-img">
+
+                            <div class="project-number">
+                                02
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-top">
+                                <span class="project-type" data-i18n="project2.type">
+                                    E-COMMERCE
+                                </span>
+                                <i data-lucide="arrow-up-right"></i>
+                            </div>
+
+                            <h3 data-i18n="project2.title">
+                                Tienda Online
+                            </h3>
+
+                            <p data-i18n="project2.desc">
+                                Plataforma e-commerce full-stack con catálogo de productos, filtrado avanzado, carrito
+                                dinámico y gestión centralizada de inventario y usuarios.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968267.png" alt="HTML"
+                                        class="brand-icon">
+                                    HTML
+                                </span>
+                                <span>
+                                    <img src="https://www.superbefilms.com/wp-content/uploads/2016/03/css-logo.png"
+                                        alt="CSS" class="brand-icon">
+                                    CSS
+                                </span>
+                                <span>
+                                    <img src="assets/java.png" alt="">
+                                    Java
+                                </span>
+                                <span>
+                                    <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="">
+                                    JavaScript
+                                </span>
+
+                            </div>
+
+                            <div class="project-buttons">
+                                <a href="https://github.com/luisdavidmontero1016" target="_blank" class="project-link">
+                                    <img src="https://www.pngkey.com/png/full/178-1787508_github-icon-download-at-icons8-white-github-icon.png"
+                                        alt="GitHub" style="width: 16px; height: 16px; object-fit: contain;">
+                                    <span data-i18n="project.code">Ver código</span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- PROJECT 3: SISTEMA DE ENCUESTAS RPC -->
+                    <article class="project-card tilt-card">
+                        <div class="project-image">
+                            <div class="project-gradient gradient-blue"></div>
+
+                            <!-- IMAGEN PREVIEW DEL PROYECTO -->
+                            <img src="assets/Encuestas.png" alt="Preview Sistema de Encuestas RPC"
+                                class="project-preview-img">
+
+                            <div class="project-number">
+                                03
+                            </div>
+                        </div>
+
+                        <div class="project-content">
+                            <div class="project-top">
+                                <span class="project-type" data-i18n="project3.type">
+                                    SISTEMA RPC / WEB
+                                </span>
+                                <i data-lucide="arrow-up-right"></i>
+                            </div>
+
+                            <h3 data-i18n="project3.title">
+                                Sistema de Encuestas RPC
+                            </h3>
+
+                            <p data-i18n="project3.desc">
+                                Aplicación cliente-servidor para la gestión y realización de encuestas, utilizando
+                                llamadas a procedimientos remotos (RPC) para la comunicación eficiente de datos.
+                            </p>
+
+                            <div class="project-tags">
+                                <span>
+                                    <img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5">
+                                    HTML
+                                </span>
+                                <span>
+                                    <img src="https://www.superbefilms.com/wp-content/uploads/2016/03/css-logo.png"
+                                        alt="CSS3">
+                                    CSS
+                                </span>
+                                <span>
+                                    <img src="assets/java.png" alt="Java">
+                                    Java
+                                </span>
+                                <span>
+                                    <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript">
+                                    JavaScript
+                                </span>
+
+
+                            </div>
+
+                            <div class="project-buttons">
+                                <a href="https://github.com/luisdavidmontero1016" target="_blank" class="project-link">
+                                    <img src="https://www.pngkey.com/png/full/178-1787508_github-icon-download-at-icons8-white-github-icon.png"
+                                        alt="GitHub" style="width: 16px; height: 16px; object-fit: contain;">
+                                    <span data-i18n="project.code">Ver código</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =================================================
+     EDUCACIÓN Y CERTIFICACIONES
+     ================================================== -->
+        <section id="formacion" class="section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <div>
+                        <p class="section-eyebrow" data-i18n="education.eyebrow">RESPALDO ACADÉMICO</p>
+                        <h2 class="section-title">
+                            <span data-i18n="education.title">Educación</span> <span data-i18n="education.titleSpan">y
+                                certificaciones</span>
+                        </h2>
+                    </div>
+
+                    <span class="cred-count-pill">
+                        <i data-lucide="shield-check"></i>
+                        <span><strong>▶</strong> <span data-i18n="education.credCount">credenciales
+                                verificadas</span></span>
+                    </span>
+                </div>
+
+                <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 items-start">
+
+                    <!-- TÍTULO PROFESIONAL -->
+                    <div
+                        class="tilt-card reveal degree-card relative rounded-2xl border border-dark-700 bg-dark-800/60 p-8 overflow-hidden">
+                        <div
+                            class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-neon-purple/20 blur-3xl pointer-events-none">
+                        </div>
+
+                        <div class="relative">
+                            <div
+                                class="w-14 h-14 rounded-xl bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center mb-6">
+                                <i data-lucide="graduation-cap" class="text-white"></i>
+                            </div>
+
+                            <span class="text-xs tracking-widest text-neon-cyan font-semibold"
+                                data-i18n="education.degreeType">TÍTULO PROFESIONAL</span>
+
+                            <h3 class="text-2xl font-bold text-white mt-2 mb-1"
+                                style="font-family:'Space Grotesk',sans-serif;" data-i18n="education.degreeTitle">
+                                Ingeniería de Sistemas
+                            </h3>
+
+                            <p class="text-white/50 text-sm mb-6" data-i18n="education.degreeInstitution">
+                                Fundación Universitaria Juan de Castellanos — Tunja · 2021 – 2026
+                            </p>
+
+                            <p class="text-white/70 text-sm leading-relaxed" data-i18n="education.degreeDesc">
+                                Formación integral en desarrollo de software, estructuras de datos, bases de datos,
+                                redes y gestión de proyectos tecnológicos, con énfasis en construir soluciones aplicadas
+                                al mundo real.
+                            </p>
+
+                            <!-- LÍNEA DE TIEMPO 2021 → 2026 -->
+                            <div class="degree-timeline">
+                                <div class="degree-timeline-track">
+                                    <span class="degree-timeline-fill"></span>
+                                </div>
+                                <div class="degree-timeline-point start">
+                                    <span class="degree-dot"></span>
+                                    <span>2021</span>
+                                </div>
+                                <div class="degree-timeline-point end">
+                                    <span class="degree-dot filled"></span>
+                                    <span>2026</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex items-center gap-2 text-sm text-neon-blue">
+                                <i data-lucide="badge-check" class="w-4 h-4"></i>
+                                <span data-i18n="education.degreeStatus">Graduado — Honorífico</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GRID DE CERTIFICACIONES -->
+                    <div class="grid sm:grid-cols-2 gap-5">
+
+                        <!-- Cert 1 -->
+                        <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/5f5a3508d0de7307d29e80117af37de4fcdeb188?utm_medium=organic_social&utm_campaign=sharewidget&utm_content=soa"
+                            target="_blank" rel="noopener" class="tilt-card cert-card cert-reveal"
+                            style="--accent:#3b82f6;">
+                            <span class="cert-ghost-index">01</span>
+                            <span class="cert-tag" data-i18n="cert1.tag">IA &amp; Automatización</span>
+
+                            <div class="cert-avatar">
+                                <img src="https://cdn.simpleicons.org/datacamp/03E17E" alt="DataCamp">
+                            </div>
+
+                            <span class="cert-issuer">DataCamp</span>
+                            <h4 class="cert-title" data-i18n="cert1.title">Software Development with Claude Code</h4>
+                            <p class="cert-date" data-i18n="cert1.date">Emitido en agosto 2026</p>
+
+                            <span class="cert-cta">
+                                <span data-i18n="cert.view">Ver credencial</span>
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </a>
+
+                        <!-- Cert 2 -->
+                        <a href="assets/Spring Boot 4 and Angular 21.pdf" target="_blank" rel="noopener"
+                            class="tilt-card cert-card cert-reveal" style="--accent:#8b5cf6;">
+                            <span class="cert-ghost-index">02</span>
+                            <span class="cert-tag" data-i18n="cert2.tag">Desarrollo Backend</span>
+
+                            <div class="cert-avatar">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzdyIQstwM_01eRSZyHpywEfj3QMxVDTD9KNzrUvdnZhvPdTn7eCrclys&s=10"
+                                    alt="Dev Senior Code">
+                            </div>
+
+                            <span class="cert-issuer" data-i18n="cert2.issuer">Dev Senior Code</span>
+                            <h4 class="cert-title" data-i18n="cert2.title">Enterprise Full Stack with Spring Boot 4 and
+                                Angular 21</h4>
+                            <p class="cert-date" data-i18n="cert2.date">Emitido en marzo 2026</p>
+
+                            <span class="cert-cta">
+                                <span data-i18n="cert.view">Ver credencial</span>
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </a>
+
+                        <!-- Cert 3 -->
+                        <a href="https://verify.skilljar.com/c/72wyr5hbhg8i" target="_blank" rel="noopener"
+                            class="tilt-card cert-card cert-reveal" style="--accent:#06b6d4;">
+                            <span class="cert-ghost-index">03</span>
+                            <span class="cert-tag" data-i18n="cert3.tag">Cloud &amp; IA</span>
+
+                            <div class="cert-avatar">
+                                <img src="https://cdn.prod.website-files.com/6400f5db669916305f63913b/65978dc7d27f43ed022c1a05_64a9014f0fdcdb0cb26de8b6_Screen%2520Shot%25202023-07-07%2520at%252011.25.07%2520PM.png"
+                                    alt="Anthropic">
+                            </div>
+
+                            <span class="cert-issuer">Anthropic</span>
+                            <h4 class="cert-title" data-i18n="cert3.title">Claude with Amazon Bedrock</h4>
+                            <p class="cert-date" data-i18n="cert3.date">Emitido en agosto 2026</p>
+
+                            <span class="cert-cta">
+                                <span data-i18n="cert.view">Ver credencial</span>
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </a>
+
+                        <!-- Cert 4 -->
+                        <a href="https://www.credly.com/badges/04d7e069-af99-4907-9a2b-3a254bcee362" target="_blank"
+                            rel="noopener" class="tilt-card cert-card cert-reveal" style="--accent:#3b82f6;">
+                            <span class="cert-ghost-index">04</span>
+                            <span class="cert-tag" data-i18n="cert4.tag">Desarrollo Backend</span>
+
+                            <div class="cert-avatar">
+                                <img src="https://static.vecteezy.com/system/resources/previews/021/514/769/non_2x/ibm-brand-symbol-software-computer-logo-black-design-illustration-free-vector.jpg"
+                                    alt="IBM">
+                            </div>
+
+                            <span class="cert-issuer">IBM</span>
+                            <h4 class="cert-title" data-i18n="cert4.title">Back-End Development</h4>
+                            <p class="cert-date" data-i18n="cert4.date">Emitido en agosto 2026</p>
+
+                            <span class="cert-cta">
+                                <span data-i18n="cert.view">Ver credencial</span>
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </a>
+
+                        <!-- Cert 5 -->
+                        <a href="https://www.credly.com/badges/95242d78-015b-45c1-9323-386584189479/linked_in_profile"
+                            target="_blank" rel="noopener" class="tilt-card cert-card cert-reveal cert-wide"
+                            style="--accent:#22c55e;">
+                            <span class="cert-ghost-index">05</span>
+                            <span class="cert-tag" data-i18n="cert5.tag">Bases de Datos</span>
+
+                            <div class="cert-avatar">
+                                <img src="https://images.icon-icons.com/2415/PNG/512/mongodb_original_logo_icon_146424.png"
+                                    alt="MongoDB">
+                            </div>
+
+                            <span class="cert-issuer">MongoDB</span>
+                            <h4 class="cert-title" data-i18n="cert5.title">Core Concepts and Architecture</h4>
+                            <p class="cert-date" data-i18n="cert5.date">Emitido en septiembre 2026</p>
+
+                            <span class="cert-cta">
+                                <span data-i18n="cert.view">Ver credencial</span>
+                                <i data-lucide="arrow-up-right"></i>
+                            </span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- =================================================
+     CONTACTO
+     ================================================== -->
+        <section id="contacto" class="section contact-section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="contact-container">
+
+                    <!-- CONTACT TEXT -->
+                    <div class="contact-intro reveal">
+                        <span class="section-eyebrow" data-i18n="contact.eyebrow">
+                            04 — CONTACTO
+                        </span>
+
+                        <h2 class="contact-title">
+                            <span data-i18n="contact.title">¿Tienes una idea?</span>
+                            <span data-i18n="contact.titleSpan">
+                                Hagámosla realidad.
+                            </span>
+                        </h2>
+
+                        <p data-i18n="contact.desc">
+                            Si tienes un proyecto, una oportunidad profesional o simplemente quieres conversar sobre
+                            tecnología, no dudes en escribirme.
+                        </p>
+
+                        <div class="contact-links">
+
+                            <div class="contact-link-row" style="--accent:#60a5fa;">
+                                <a href="mailto:luisdavidmontero10.8@gmail.com" class="contact-link">
+                                    <div class="contact-link-icon">
+                                        <img src="assets/gmail.png" alt="Gmail">
+                                    </div>
+                                    <div class="contact-link-text">
+                                        <span data-i18n="contact.emailLabel">Correo</span>
+                                        <strong>
+                                            luisdavidmontero10.8@gmail.com
+                                        </strong>
+                                    </div>
+                                    <i data-lucide="arrow-up-right" class="arrow"></i>
+                                </a>
+                                <button type="button" class="copy-btn" data-copy-email="luisdavidmontero10.8@gmail.com"
+                                    aria-label="Copiar correo">
+                                    <i data-lucide="copy"></i>
+                                </button>
+                            </div>
+
+                            <a href="https://github.com/luisdavidmontero1016" target="_blank" class="contact-link"
+                                style="--accent:#a78bfa;">
+                                <div class="contact-link-icon">
+                                    <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub"
+                                        class="brand-icon">
+                                </div>
+                                <div class="contact-link-text">
+                                    <span>GitHub</span>
+                                    <strong>
+                                        github.com/luisdavidmontero1016
+                                    </strong>
+                                </div>
+                                <i data-lucide="arrow-up-right" class="arrow"></i>
+                            </a>
+
+                            <a href="https://linkedin.com/in/ing-luismontero" target="_blank" class="contact-link"
+                                style="--accent:#38bdf8;">
+                                <div class="contact-link-icon">
+                                    <img src="assets/linkedin.png" alt="LinkedIn" class="brand-icon">
+                                </div>
+                                <div class="contact-link-text">
+                                    <span>LinkedIn</span>
+                                    <strong>
+                                        linkedin.com/in/ing-luismontero
+                                    </strong>
+                                </div>
+                                <i data-lucide="arrow-up-right" class="arrow"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- CONTACT FORM -->
+                    <form id="contactForm" class="contact-form reveal">
+                        <div class="form-group">
+                            <label for="name" data-i18n="contact.formName">
+                                Nombre
+                            </label>
+                            <div class="input-wrapper">
+                                <i data-lucide="user"></i>
+                                <input type="text" id="name" name="name"
+                                    data-i18n-placeholder="contact.formNamePlaceholder" placeholder="Tu nombre"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" data-i18n="contact.formEmail">
+                                Correo electrónico
+                            </label>
+                            <div class="input-wrapper">
+                                <i data-lucide="at-sign"></i>
+                                <input type="email" id="email" name="email"
+                                    data-i18n-placeholder="contact.formEmailPlaceholder" placeholder="tu@email.com"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" data-i18n="contact.formSubject">
+                                Asunto
+                            </label>
+                            <div class="input-wrapper">
+                                <i data-lucide="message-square"></i>
+                                <input type="text" id="subject" name="subject"
+                                    data-i18n-placeholder="contact.formSubjectPlaceholder"
+                                    placeholder="¿En qué podemos trabajar?" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" data-i18n="contact.formMessage">
+                                Mensaje
+                            </label>
+                            <div class="input-wrapper textarea-wrapper">
+                                <i data-lucide="file-text"></i>
+                                <textarea id="message" name="message" rows="5"
+                                    data-i18n-placeholder="contact.formMessagePlaceholder"
+                                    placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="neon-button submit-button" id="submitBtn">
+                            <span class="submit-btn-label" data-i18n="contact.formSubmit">Enviar mensaje</span>
+                            <i data-lucide="send"></i>
+                        </button>
+
+                        <p id="formMessage" class="form-message"></p>
+
+                        <p class="form-privacy-note">
+                            <i data-lucide="lock"></i>
+                            <span data-i18n="contact.privacy">Tu información nunca se comparte con terceros.</span>
+                        </p>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+     FOOTER
+     ====================================================== -->
+    <footer>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="footer-content">
+                <div class="logo">
+                    <span class="logo-bracket">&lt;</span>
+                    LD
+                    <span class="logo-bracket">/&gt;</span>
+                </div>
+
+                <p data-i18n="footer.text">
+                    Diseñado y desarrollado con pasión por Luis David.
+                </p>
+
+                <div class="footer-socials">
+                    <a href="https://github.com/luisdavidmontero1016" target="_blank" aria-label="GitHub">
+                        <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" class="brand-icon">
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/ing-luismontero" target="_blank" aria-label="LinkedIn">
+                        <img src="assets/linkedin.png" alt="LinkedIn" class="brand-icon">
+                    </a>
+
+                    <a href="mailto:luisdavidmontero10.8@gmail.com" aria-label="Email">
+                        <img src="assets/gmail.png" alt="Gmail">
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>
+                    © 2026 Luis David Montero
+                </span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- =====================================================
+         TOAST DE COPIADO
+    ====================================================== -->
+
+    <div id="copyToast" class="copy-toast">
+        <i data-lucide="check-circle-2"></i>
+        <span data-i18n="contact.copied">Correo copiado</span>
+    </div>
+
+    <!-- =====================================================
+         BACK TO TOP
+    ====================================================== -->
+
+    <button id="backToTop" aria-label="Volver arriba">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
